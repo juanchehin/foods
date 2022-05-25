@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Custom fonts for this template-->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="./css/sb-admin-2.min.css" rel="stylesheet">
+
+    <title>Comidas</title>
+    <script>
+        window.onload = function() {
+            console.log('pasa onload');
+            loadFods(2);
+            document.getElementById('foodType').value = 2;
+            document.getElementById('food').value = 9; // Selecciona 'Zanahoria'
+        }
+
+        // =================
+        // Genera el subtipo (food)
+        // ===================
+        window.selectLoad = function(selecObj, results) {
+            console.log("pasa selectLoad: ")
+            var selectElement = selecObj;
+            selectElement.html('');
+            //selectElement.append('<option value="">Seleccionar...</option>');
+            $.each(results, function(key, result) {
+                // console.log("pasa each result : ", result)
+                selectElement.append('<option value="' + result.id + '">' + result.nombre + '</option>');
+            });
+        };
+
+
+        function changeFood(id, name) {
+            $("#foodTitle").html(name);
+            $("#foodImg").attr("src", "./img/" + id + ".jpg");
+        }
+
+        function loadFods(idFoodType) {
+            //TODO: Llamada por ajax a servicio PONER URL
+            // http://challenge.cysonline.com.ar/challenge/foods/
+            var allFoods = new Array();
+
+
+
+            // =================================================================
+            //		PROBLEMA CON CORS!
+            // =================================================================
+            // var url = 'https://api.chucknorris.io/jokes/random' /
+            //     // var url = 'https://challenge.cysonline.com.ar/challenge/foods/'
+            //     console.log('pasa 1:');
+            // $.ajax({
+            //     url: url,
+            //     method: 'GET',
+            //     success: function(data) {
+            //         console.log('data es :', data);
+            //     }
+            // })
+
+            allFoods.push([{
+                "id": 1,
+                "nombre": "Pollo"
+            }, {
+                "id": 2,
+                "nombre": "Vaca"
+            }, {
+                "id": 3,
+                "nombre": "Pescado"
+            }]);
+            allFoods.push([{
+                "id": 4,
+                "nombre": "Manzana"
+            }, {
+                "id": 5,
+                "nombre": "Banana"
+            }, {
+                "id": 6,
+                "nombre": "Pera"
+            }]);
+            allFoods.push([{
+                "id": 7,
+                "nombre": "Tomate"
+            }, {
+                "id": 8,
+                "nombre": "Lechuga"
+            }, {
+                "id": 9,
+                "nombre": "Zanahoria"
+            }]);
+
+            foods = allFoods[idFoodType];
+            selectLoad($('#food'), foods);
+
+            console.log("idFoodType : ", idFoodType)
+
+            if (idFoodType === "0" || idFoodType === 0) {
+                window.document.getElementById("food").value = "2";
+            } else if (idFoodType === "1" || idFoodType === 1) {
+                window.document.getElementById("food").value = "1";
+            } else if (idFoodType === "2" || idFoodType === 2) {
+                window.document.getElementById("food").value = "2";
+            }
+
+        }
+
+
+        // document.getElementById('foodType').value = 2;
+        // loadFods(2);
+        // document.getElementById('food').value = 2;
+    </script>
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid mainContent">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800 text-center">Comidas</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-2">
+                            <select id="foodType" class="form-control form-control-sm" onchange="loadFods(this.value)">
+											<option value="0">Carnes</option>
+											<option value="1">Frutas</option>
+											<option value="2">Verduras</option>
+										</select>
+                        </div>
+                        <div class="col-2">
+                            <select id="food" class="form-control form-control-sm" onchange="changeFood(this.value,this.options[this.selectedIndex].text)">
+										</select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 id="foodTitle" class="m-0 font-weight-bold text-primary"></h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img id="foodImg" class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 15rem;" src="" alt="">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="./js/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="./js/sb-admin-2.min.js"></script>
+
+
+</body>
+
+</html>
+
+<!--
+	Carnes	
+		Pollo (1),Vaca (2),Pescado (3)
+	Frutas
+		Manzana (4), Banana (5), Pera (6)
+	Verduras
+		Tomate (7), Lechuca (8), Zanahoria (9)
+  -->
