@@ -17,22 +17,20 @@
     <title>Comidas</title>
     <script>
         window.onload = function() {
-            console.log('pasa onload');
             loadFods(2);
             document.getElementById('foodType').value = 2;
             document.getElementById('food').value = 9; // Selecciona 'Zanahoria'
+            changeFood(9, 'Zanahoria')
         }
 
         // =================
         // Genera el subtipo (food)
         // ===================
         window.selectLoad = function(selecObj, results) {
-            console.log("pasa selectLoad: ")
             var selectElement = selecObj;
             selectElement.html('');
             //selectElement.append('<option value="">Seleccionar...</option>');
             $.each(results, function(key, result) {
-                // console.log("pasa each result : ", result)
                 selectElement.append('<option value="' + result.id + '">' + result.nombre + '</option>');
             });
         };
@@ -47,7 +45,7 @@
             //TODO: Llamada por ajax a servicio PONER URL
             // http://challenge.cysonline.com.ar/challenge/foods/
             var allFoods = new Array();
-
+            // changeFood(id, name)
 
 
             // =================================================================
@@ -101,12 +99,15 @@
             if (idFoodType === "0" || idFoodType === 0) {
                 // Carne
                 window.document.getElementById("food").value = "2";
+                changeFood(2, 'Vaca')
             } else if (idFoodType === "1" || idFoodType === 1) {
                 // Fruta
                 window.document.getElementById("food").value = "5";
+                changeFood(5, 'Banana')
             } else if (idFoodType === "2" || idFoodType === 2) {
                 // Verduras
                 window.document.getElementById("food").value = "9";
+                changeFood(9, 'Zanahoria')
             }
 
         }
