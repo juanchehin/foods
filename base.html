@@ -98,14 +98,15 @@
             foods = allFoods[idFoodType];
             selectLoad($('#food'), foods);
 
-            console.log("idFoodType : ", idFoodType)
-
             if (idFoodType === "0" || idFoodType === 0) {
+                // Carne
                 window.document.getElementById("food").value = "2";
             } else if (idFoodType === "1" || idFoodType === 1) {
-                window.document.getElementById("food").value = "1";
+                // Fruta
+                window.document.getElementById("food").value = "5";
             } else if (idFoodType === "2" || idFoodType === 2) {
-                window.document.getElementById("food").value = "2";
+                // Verduras
+                window.document.getElementById("food").value = "9";
             }
 
         }
